@@ -1,0 +1,24 @@
+# VUE
+**/.DS_Store
+**/node_modules
+app/vue/dist
+**/.yarn/cache
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+app/vue/npm-debug.log*
+app/vue/yarn-debug.log*
+app/vue/yarn-error.log*
+app/vue/pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
