@@ -6,24 +6,17 @@
 		<v-text-field
 			v-model="form.data.search"
 			:disabled="getCharacterList.length === 0"
+			@input="debouncedSearch"
+			@click:clear="() => onClearSearch()"
 			hide-details
 			max-width="700px"
 			placeholder="Search"
 			rounded="pill"
 			variant="solo"
 			width="100%"
-			@input="debouncedSearch">
+			clearable>
 			<template #prepend-inner>
 				<v-icon>mdi-magnify</v-icon>
-			</template>
-			<template #append-inner>
-				<v-btn
-					@click="() => onClearSearch()"
-					:disabled="!form.data.search"
-					icon
-					variant="text">
-					<v-icon>mdi-close</v-icon>
-				</v-btn>
 			</template>
 		</v-text-field>
 	</v-form>

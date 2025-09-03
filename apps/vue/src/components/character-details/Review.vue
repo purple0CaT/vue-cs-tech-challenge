@@ -35,7 +35,7 @@
 								{{ review.name }}
 							</span>
 							<span class="text-body-2 text-grey-darken-1">
-								{{ displayDate(review.createdAt) }}
+								{{ formatDate(review.createdAt) }}
 							</span>
 						</div>
 						<v-rating
@@ -48,7 +48,7 @@
 							:size="24" />
 						<span>
 							<strong class="text-grey-darken-2">Viewed:</strong>
-							{{ displayDate(review.watchedAt) }}
+							{{ formatDate(review.watchedAt) }}
 						</span>
 						<span class="text-body-1">
 							{{ review.comment }}
@@ -65,7 +65,7 @@
 
 <script setup lang="ts">
 import { useReviewsStore } from '@/store/stores/review.store';
-import { displayDate } from '@/utils/common.utils';
+import { formatDate } from '@/utils/common.utils';
 
 const props = defineProps<{
 	characterId: string;

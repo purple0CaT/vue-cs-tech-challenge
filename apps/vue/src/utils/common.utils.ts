@@ -18,7 +18,8 @@ export function debounce<T extends (...args: any[]) => any>(
 	return debouncedFunction;
 }
 
-export function displayDate(date: Date) {
-	return new Date(date).toLocaleDateString();
+export function formatDate(date: Date, type: 'local' | 'iso' = 'local'): string {
+	if (type === 'local') return new Date(date).toLocaleDateString();
+	return new Date(date).toISOString().split('T')[0];
 }
 

@@ -33,35 +33,47 @@
 				:rules="[rules.required]"
 				variant="solo"
 				width="100%" />
-			<v-text-field
-				v-model="form.data.watchedAt"
-				hide-details
-				:max="new Date().toISOString().split('T')[0]"
-				label="Date watched"
-				:readonly="isWorking"
-				rounded="xl"
-				rows="4"
-				:rules="[rules.required]"
-				type="date"
-				variant="solo"
-				width="100%">
-				<template #append-inner>
-					<v-btn
-						rounded="pill"
-						variant="plain"
-						@click="onSetToday"
-						>Today</v-btn
-					>
+			<v-menu
+				v-model="menu"
+				:close-on-content-click="false"
+				transition="scale-transition"
+				offset-y
+				min-width="auto">
+				<template #activator="{ props }">
+					<v-text-field
+						v-bind="props"
+						:model-value="form.data.watchedAt ? formatDate(form.data.watchedAt) : ''"
+						:rules="[rules.required]"
+						variant="solo"
+						width="100%"
+						label="Select date"
+						rounded="xl"
+						append-inner-icon="mdi-calendar"
+						readonly
+						clearable>
+						<template #append-inner>
+							<v-btn
+								rounded="pill"
+								variant="plain"
+								@click.stop="onSetToday">
+								Today
+							</v-btn>
+						</template>
+					</v-text-field>
 				</template>
-			</v-text-field>
+
+				<v-date-picker
+					v-model="form.data.watchedAt"
+					:max="formatDate(new Date(), 'iso')"
+					@update:model-value="onSaveDate" />
+			</v-menu>
 		</div>
 		<div class="w-100 d-flex justify-space-between align-center">
 			<v-switch
 				v-model="shouldSimulate"
 				color="primary"
 				hide-details
-				label="Simulate API
-			call"
+				label="Simulate API call"
 				style="opacity: 0.5" />
 			<FormButton
 				color="primary"
@@ -80,6 +92,7 @@
 <script setup lang="ts">
 import type { IReviewRequestDto } from '@/models/requests/review.request';
 import { useReviewsStore } from '@/store/stores/review.store';
+import { formatDate } from '@/utils/common.utils';
 import { rules } from '@/utils/validator-rules';
 
 const props = defineProps<{
@@ -91,6 +104,7 @@ const { isWorking, isSuccess, getError } = storeToRefs(reviewsStore);
 
 const shouldSimulate = ref(false);
 const formRef = ref();
+const menu = ref(false);
 
 const form = reactive({
 	isValid: false,
@@ -121,6 +135,15 @@ async function onSubmit() {
 		formRef.value?.reset();
 		formRef.value?.resetValidation();
 	}
+}
+
+function onSaveDate(value: Date | null) {
+	if (!value) {
+		form.data.watchedAt = null;
+		return;
+	}
+
+	form.data.watchedAt = new Date(value).toISOString().split('T')[0] as any;
 }
 
 function onSetToday() {
