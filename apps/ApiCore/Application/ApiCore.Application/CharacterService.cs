@@ -1,4 +1,5 @@
 ﻿using ApiCore.Clients.Contracts;
+using ApiCore.Common.Extensions;
 using ApiCore.Common.Models;
 using ApiCore.Contracts;
 using ApiCore.Models;
@@ -7,7 +8,7 @@ namespace ApiCore.Application;
 
 public class CharacterService(IStarWarsApiClient starWarsApiClient) : ICharacterService {
 	private readonly int _pageSize = 10;
-	private readonly IStarWarsApiClient _starWarsApiClient = starWarsApiClient;
+	private readonly IStarWarsApiClient _starWarsApiClient = starWarsApiClient.NotNull(nameof(starWarsApiClient));
 	public async Task<PagedResponse<Character>> GetCharacterList(int page) {
 		var items = await _starWarsApiClient.GetCharacterList();
 

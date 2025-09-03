@@ -27,4 +27,17 @@ npm-build:
 dotnet:
 	cd apps/ApiCore && dotnet restore && cd Api/ApiCore.Api && dotnet run
 
-.PHONY: yarn vue build npm-i npm-dev npm-build
+dotnet-test:
+	cd apps/ApiCore && dotnet test
+
+dotnet-test-verbose:
+	cd apps/ApiCore && dotnet test --verbosity normal
+
+dotnet-test-coverage:
+	cd apps/ApiCore && dotnet test --collect:"XPlat Code Coverage"
+
+dotnet-clean:
+	cd apps/ApiCore && dotnet clean
+
+
+.PHONY: yarn vue build npm-i npm-dev npm-build dotnet dotnet-test dotnet-test-verbose dotnet-test-coverage dotnet-clean

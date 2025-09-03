@@ -1,11 +1,7 @@
 ﻿using System.Threading.RateLimiting;
-
 using ApiCore.Clients;
-
 using Flurl.Http.Configuration;
-
 using Lamar.Microsoft.DependencyInjection;
-
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace ApiCore.DependencyInjection;
