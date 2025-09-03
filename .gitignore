@@ -4,6 +4,15 @@
 apps/vue/dist
 **/.yarn/cache
 
+# DOTNET
+
+apps/ApiCore/**/obj
+apps/ApiCore/**/bin
+apps/ApiCore/**/*.coverage
+apps/ApiCore/**/.npmrc
+apps/ApiCore/**/*.jfm
+apps/ApiCore/**/*.dbmdl
+
 # local env files
 .env.local
 .env.*.local

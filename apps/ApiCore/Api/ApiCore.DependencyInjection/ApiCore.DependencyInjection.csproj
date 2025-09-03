@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	<TargetFramework>net9.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\ApiCore.Application\ApiCore.Application.csproj" />
+    <ProjectReference Include="..\..\Application\ApiCore.Contracts\ApiCore.Contracts.csproj" />
+    <ProjectReference Include="..\..\Application\ApiCore.Models\ApiCore.Models.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ApiCore.Clients\ApiCore.Clients.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ApiCore.Clients.Contracts\ApiCore.Clients.Contracts.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ApiCore.Clients.Models\ApiCore.Clients.Models.csproj" />
+    <ProjectReference Include="..\..\Common\ApiCore.Common\ApiCore.Common.csproj" />
+  </ItemGroup>
+</Project>
