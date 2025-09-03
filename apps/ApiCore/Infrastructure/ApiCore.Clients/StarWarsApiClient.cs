@@ -33,10 +33,10 @@ public class StarWarsApiClient
 		return _mapper.Map<Character>(response);
 	}
 
-	public async Task<IList<Character>> GetAll(int page = 1) {
+	public async Task<IList<Character>> GetAll() {
 		var url = $"{baseUrl}/{_peopleSegment}";
 		var client = _flurlClientCache.GetOrAdd(url, url);
-		var flurlResponse = await client.Request().AppendQueryParam(nameof(page), page).GetAsync();
+		var flurlResponse = await client.Request().GetAsync();
 
 		if (flurlResponse.StatusCode != StatusCodes.Status200OK) {
 			throw new Exception("Characters not found");
