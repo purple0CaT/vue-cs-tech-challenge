@@ -27,10 +27,10 @@
 		<section
 			class="absolute"
 			style="right: 8px; top: 8px">
-			<div>
+			<div class="cursor-help">
 				<v-tooltip
 					activator="parent"
-					location="start">
+					location="start bottom">
 					{{ healthy ? 'The server is healthy' : 'The server is down' }}
 				</v-tooltip>
 				<v-icon
