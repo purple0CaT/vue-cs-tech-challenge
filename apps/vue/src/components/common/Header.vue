@@ -23,10 +23,49 @@
 				</div>
 			</section>
 		</router-link>
+
+		<section
+			class="absolute"
+			style="right: 8px; top: 8px">
+			<div>
+				<v-tooltip
+					activator="parent"
+					location="start">
+					{{ healthy ? 'The server is healthy' : 'The server is down' }}
+				</v-tooltip>
+				<v-icon
+					v-if="healthy"
+					color="success">
+					mdi-wifi-strength-4
+				</v-icon>
+				<v-icon
+					v-else
+					color="error">
+					mdi-wifi-strength-off
+				</v-icon>
+			</div>
+		</section>
 	</header>
 </template>
 
-<script setup></script>
+<script setup>
+import { useHealthStore } from '@/store/stores/health.store';
+
+const healthStore = useHealthStore();
+const { healthy } = storeToRefs(healthStore);
+
+const interval = ref(null);
+
+onMounted(() => {
+	healthStore.checkHealth();
+	interval.value = setInterval(() => {
+		healthStore.checkHealth();
+	}, 15 * 1000);
+});
+onBeforeUnmount(() => {
+	clearInterval(interval.value);
+});
+</script>
 
 <style lang="scss" scoped>
 header {
@@ -42,7 +81,6 @@ header {
 	width: 35px;
 	height: 35px;
 	perspective: 500px;
-	//
 	&__inner {
 		position: absolute;
 		width: 100%;
@@ -50,7 +88,6 @@ header {
 		transition: transform 1s;
 		transform-style: preserve-3d;
 	}
-	//
 	&:hover {
 		& .logo-flip__inner {
 			transform: rotateY(180deg);

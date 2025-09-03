@@ -1,7 +1,11 @@
 ﻿using System.Threading.RateLimiting;
+
 using ApiCore.Clients;
+
 using Flurl.Http.Configuration;
+
 using Lamar.Microsoft.DependencyInjection;
+
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace ApiCore.DependencyInjection;
@@ -25,8 +29,8 @@ public static class ServiceConfiguration {
 			app.UseHttpsRedirection();
 		}
 
-		app.UseCors("AllowAll");
 		app.UseRouting();
+		app.UseCors("AllowAll");
 
 		app.UseAuthorization();
 
@@ -77,10 +81,9 @@ public static class ServiceConfiguration {
 		});
 
 		services.AddHttpContextAccessor();
-		
+
 		// Configure Flurl client cache with Star Wars API
-		services.AddSingleton<IFlurlClientCache>(provider =>
-		{
+		services.AddSingleton<IFlurlClientCache>(provider => {
 			var cache = new FlurlClientCache();
 			cache.Add("https://swapi.info/api/", "https://swapi.info/api/");
 			return cache;

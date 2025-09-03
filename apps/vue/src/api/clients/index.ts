@@ -35,4 +35,5 @@ export class ApiClient {
 }
 
 export const starWarsApiClient = new ApiClient('https://swapi.info/api', { timeout: 5000 });
+export const dotnetApiClient = new ApiClient('http://localhost:3000/api', { timeout: 5000 });
 
