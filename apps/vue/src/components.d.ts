@@ -9,13 +9,18 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BadRequestPage: typeof import('./components/pages/BadRequestPage.vue')['default']
-    CharacterCard: typeof import('./components/CharacterCard.vue')['default']
+    CharacterDetails: typeof import('./components/character-details/CharacterDetails.vue')['default']
+    CharacterListCard: typeof import('./components/home/CharacterListCard.vue')['default']
     CharacterPage: typeof import('./components/pages/CharacterPage.vue')['default']
-    Comment: typeof import('./components/Comment.vue')['default']
+    Comment: typeof import('./components/character-details/ReviewForm.vue')['default']
+    FormButton: typeof import('./components/common/FormButton.vue')['default']
     Header: typeof import('./components/common/Header.vue')['default']
     HomePage: typeof import('./components/pages/HomePage.vue')['default']
-    Rating: typeof import('./components/Rating.vue')['default']
+    Rating: typeof import('./components/character-details/Review.vue')['default']
+    Review: typeof import('./components/character-details/Review.vue')['default']
+    ReviewForm: typeof import('./components/character-details/ReviewForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchForm: typeof import('./components/home/SearchForm.vue')['default']
   }
 }

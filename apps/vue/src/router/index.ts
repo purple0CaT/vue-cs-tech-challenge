@@ -17,6 +17,7 @@ const routes = [
 	{
 		path: '/:pathMatch(.*)*',
 		name: 'BadRequestPage',
+		meta: { layout: false },
 		component: () => import('../components/pages/BadRequestPage.vue'),
 	},
 ];

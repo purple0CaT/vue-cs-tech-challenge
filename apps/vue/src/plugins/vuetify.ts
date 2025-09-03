@@ -4,12 +4,12 @@
  * Framework documentation: https://vuetifyjs.com`
  */
 
-// Styles
-import '@mdi/font/css/materialdesignicons.css';
-import 'vuetify/styles';
-
 // Composables
 import { createVuetify, type ThemeDefinition } from 'vuetify';
+// Styles
+import '@mdi/font/css/materialdesignicons.css';
+
+import 'vuetify/styles';
 
 const base: ThemeDefinition = {
 	dark: false,
@@ -29,6 +29,14 @@ export default createVuetify({
 		defaultTheme: 'base',
 		themes: {
 			base,
+		},
+	},
+	defaults: {
+		VCard: {
+			style: { overflow: 'unset' },
+		},
+		VRating: {
+			style: { 'white-space': 'unset' },
 		},
 	},
 });

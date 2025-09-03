@@ -1,7 +1,7 @@
 # VUE
 **/.DS_Store
 **/node_modules
-app/vue/dist
+apps/vue/dist
 **/.yarn/cache
 
 # local env files
@@ -9,10 +9,10 @@ app/vue/dist
 .env.*.local
 
 # Log files
-app/vue/npm-debug.log*
-app/vue/yarn-debug.log*
-app/vue/yarn-error.log*
-app/vue/pnpm-debug.log*
+apps/vue/npm-debug.log*
+apps/vue/yarn-debug.log*
+apps/vue/yarn-error.log*
+apps/vue/pnpm-debug.log*
 
 # Editor directories and files
 .idea

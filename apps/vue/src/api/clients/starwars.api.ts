@@ -1,18 +1,22 @@
-import { starWarsApiClient } from '.';
 import type { StarWarsApiResponse } from '../models/starwars-api.models';
+import type { IReview } from '@/store/models/review.model';
+import { starWarsApiClient } from '.';
 
 export namespace StarWarsApi {
-	export function getCharacters(): Promise<StarWarsApiResponse.Person[]> {
-		return starWarsApiClient.get<StarWarsApiResponse.Person[]>(`/people`);
+	export function getCharacters(): Promise<StarWarsApiResponse.Character[]> {
+		return starWarsApiClient.get<StarWarsApiResponse.Character[]>(`/people`);
 	}
 
-	export function getCharacter(id: string): Promise<StarWarsApiResponse.Person> {
-		return starWarsApiClient.get<StarWarsApiResponse.Person>(`/people/${id}`);
+	export function getCharacter(id: number): Promise<StarWarsApiResponse.Character> {
+		return starWarsApiClient.get<StarWarsApiResponse.Character>(`/people/${id}`);
 	}
 
-	// FIXME DTO
-	export function createCharacter(data: any): Promise<StarWarsApiResponse.Person> {
-		return starWarsApiClient.post<StarWarsApiResponse.Person>(`/people`, data);
+	export function createReview(data: any): Promise<IReview> {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				reject('Error');
+			}, 500);
+		});
 	}
 }
 

@@ -14,7 +14,7 @@ export namespace StarWarsApiResponse {
 		vehicles: string;
 	}
 
-	export interface Person extends Resource {
+	export interface Character extends Resource {
 		name: string;
 		height: string;
 		mass: string;
