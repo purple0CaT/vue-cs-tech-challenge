@@ -47,7 +47,7 @@
 						@click:clear="clearWatchedDate"
 						variant="solo"
 						width="100%"
-						label="Select date"
+						label="Watched date"
 						rounded="xl"
 						append-inner-icon="mdi-calendar"
 						readonly
