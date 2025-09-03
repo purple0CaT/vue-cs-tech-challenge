@@ -24,4 +24,7 @@ npm-i-vue:
 npm-build:
 	cd apps/vue && npm run build
 
+dotnet:
+	cd apps/ApiCore && dotnet restore && cd Api/ApiCore.Api && dotnet run
+
 .PHONY: yarn vue build npm-i npm-dev npm-build

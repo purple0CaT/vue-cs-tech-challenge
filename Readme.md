@@ -32,3 +32,11 @@ Or install & start in one step:
 make yarn-vue
 ```
 
+# 🚀 .NET Startup
+
+Installs the packages and runs the dotnet
+
+```bash
+make dotnet
+```
+
