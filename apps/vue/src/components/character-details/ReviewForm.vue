@@ -42,8 +42,9 @@
 				<template #activator="{ props }">
 					<v-text-field
 						v-bind="props"
-						:model-value="form.data.watchedAt ? formatDate(form.data.watchedAt) : ''"
+						v-model="formatedWatchedAt"
 						:rules="[rules.required]"
+						@click:clear="clearWatchedDate"
 						variant="solo"
 						width="100%"
 						label="Select date"
@@ -64,7 +65,7 @@
 
 				<v-date-picker
 					v-model="form.data.watchedAt"
-					:max="formatDate(new Date(), 'iso')"
+					:max="todayDate"
 					@update:model-value="onSaveDate" />
 			</v-menu>
 		</div>
@@ -105,6 +106,12 @@ const { isWorking, isSuccess, getError } = storeToRefs(reviewsStore);
 const shouldSimulate = ref(false);
 const formRef = ref();
 const menu = ref(false);
+const todayDate = ref(new Date());
+
+const formatedWatchedAt = computed(() => {
+	if (!form.data.watchedAt) return null;
+	return formatDate(form.data.watchedAt);
+});
 
 const form = reactive({
 	isValid: false,
@@ -143,11 +150,15 @@ function onSaveDate(value: Date | null) {
 		return;
 	}
 
-	form.data.watchedAt = new Date(value).toISOString().split('T')[0] as any;
+	form.data.watchedAt = value;
 }
 
 function onSetToday() {
-	form.data.watchedAt = new Date().toISOString().split('T')[0] as any;
+	form.data.watchedAt = todayDate.value;
+}
+
+function clearWatchedDate() {
+	form.data.watchedAt = null;
 }
 </script>
 
