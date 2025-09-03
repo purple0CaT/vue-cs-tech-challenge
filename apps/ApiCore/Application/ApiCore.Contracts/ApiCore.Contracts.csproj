@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApiCore.Models\ApiCore.Models.csproj" />
+    <ProjectReference Include="..\..\Common\ApiCore.Common\ApiCore.Common.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,8 +1,9 @@
-﻿using ApiCore.Models;
+﻿using ApiCore.Common.Models;
+using ApiCore.Models;
 
 namespace ApiCore.Contracts;
 
 public interface ICharacterService {
-	Task<IList<Character>> GetAll();
-	Task<Character> GetOne(int id);
+	Task<PagedResponse<Character>> GetCharacterList(int page);
+	Task<Character> GetCharacter(int id);
 }

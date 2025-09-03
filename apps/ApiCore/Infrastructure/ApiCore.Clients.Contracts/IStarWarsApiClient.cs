@@ -3,6 +3,6 @@
 namespace ApiCore.Clients.Contracts;
 
 public interface IStarWarsApiClient {
-	public Task<Character> GetOne(int id);
-	public Task<IList<Character>> GetAll();
+	public Task<IList<Character>> GetCharacterList();
+	public Task<Character> GetCharacter(int id);
 }

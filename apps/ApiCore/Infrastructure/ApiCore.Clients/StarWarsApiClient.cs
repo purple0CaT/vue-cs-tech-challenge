@@ -20,7 +20,7 @@ public class StarWarsApiClient
 	private readonly string _peopleSegment = "people";
 	private readonly string baseUrl = "https://swapi.info/api";
 
-	public async Task<Character> GetOne(int id) {
+	public async Task<Character> GetCharacter(int id) {
 		var url = $"{baseUrl}/{_peopleSegment}/{id}";
 		var client = _flurlClientCache.GetOrAdd(url, url);
 		var flurlResponse = await client.Request(url).GetAsync();
@@ -33,7 +33,7 @@ public class StarWarsApiClient
 		return _mapper.Map<Character>(response);
 	}
 
-	public async Task<IList<Character>> GetAll() {
+	public async Task<IList<Character>> GetCharacterList() {
 		var url = $"{baseUrl}/{_peopleSegment}";
 		var client = _flurlClientCache.GetOrAdd(url, url);
 		var flurlResponse = await client.Request().GetAsync();
