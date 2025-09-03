@@ -12,9 +12,9 @@ public class SWCharacterController(ICharacterService characterService) : Control
 
 
 	[HttpGet]
-	public async Task<ActionResult<object>> GetAll([FromQuery] int page) {
+	public async Task<ActionResult<object>> GetAll() {
 		try {
-			var response = await _characterService.GetAll(page);
+			var response = await _characterService.GetAll();
 			return Ok(response);
 		} catch (Exception ex) {
 			return StatusCode(500, new { error = ex.Message });
