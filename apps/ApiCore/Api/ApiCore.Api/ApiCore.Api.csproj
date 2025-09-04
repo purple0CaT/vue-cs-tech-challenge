@@ -14,6 +14,7 @@
     <ProjectReference Include="..\..\Common\ApiCore.Common\ApiCore.Common.csproj" />
     <ProjectReference Include="..\..\Application\ApiCore.Application\ApiCore.Application.csproj" />
     <ProjectReference Include="..\..\Application\ApiCore.Contracts\ApiCore.Contracts.csproj" />
+    <ProjectReference Include="..\..\Application\ApiCore.Models\ApiCore.Models.csproj" />
     <ProjectReference Include="..\ApiCore.DependencyInjection\ApiCore.DependencyInjection.csproj" />
   </ItemGroup>
 

@@ -14,9 +14,12 @@ public class CharacterController(ICharacterService characterService) : Controlle
 
 
 	[HttpGet]
-	public async Task<ActionResult<PagedResponse<Character>>> GetCharacterList(int page = 1) {
+	//TODO the user id should be extracted from the token
+	public async Task<ActionResult<PagedResponse<Character>>> GetCharacterList(
+		[FromQuery] int page = 1,
+		[FromQuery] string? userId = null) {
 		try {
-			var response = await _characterService.GetCharacterList(page);
+			var response = await _characterService.GetCharacterList(page, userId);
 			return Ok(response);
 		} catch (Exception ex) {
 			return StatusCode(500, new { error = ex.Message });
@@ -24,9 +27,11 @@ public class CharacterController(ICharacterService characterService) : Controlle
 	}
 
 	[HttpGet("{id:int}")]
-	public async Task<ActionResult<Character>> GetCharacter(int id) {
+	public async Task<ActionResult<Character>> GetCharacter(
+		[FromRoute] int id,
+		[FromQuery] string? userId = null) {
 		try {
-			var response = await _characterService.GetCharacter(id);
+			var response = await _characterService.GetCharacter(id, userId);
 			return Ok(response);
 		} catch (Exception ex) {
 			return StatusCode(500, new { error = ex.Message });

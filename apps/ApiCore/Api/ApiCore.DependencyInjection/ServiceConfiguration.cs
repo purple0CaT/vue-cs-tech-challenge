@@ -1,7 +1,11 @@
 ﻿using System.Threading.RateLimiting;
+
 using ApiCore.Clients;
+
 using Flurl.Http.Configuration;
+
 using Lamar.Microsoft.DependencyInjection;
+
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace ApiCore.DependencyInjection;
@@ -30,6 +34,8 @@ public static class ServiceConfiguration {
 
 		app.UseAuthorization();
 
+		//TODO we could also add a global exception handler app.UseGlobalExceptionHandler();
+
 		app.MapControllers();
 		app.MapHealthChecks("/api/health");
 	}
@@ -56,6 +62,7 @@ public static class ServiceConfiguration {
 	}
 
 	private static void AddWeb(this IServiceCollection services) {
+		services.AddMemoryCache();
 		services.AddHealthChecks();
 		services.AddRateLimiter(limiterOptions => {
 			// available sliding window limitter

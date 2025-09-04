@@ -2,6 +2,7 @@
 
 public class Character
 {
+	public string Id { get; set; }
 	public string Name { get; set; }
 	public string Height { get; set; }
 	public string Mass { get; set; }
@@ -18,4 +19,5 @@ public class Character
 	public DateTime Created { get; set; }
 	public DateTime Edited { get; set; }
 	public string Url { get; set; }
+	public bool IsFavorite { get; set; }
 }

@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Infrastructure\ApiCore.Clients\ApiCore.Clients.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ApiCore.Clients.Contracts\ApiCore.Clients.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ApiCore.Clients.Models\ApiCore.Clients.Models.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ApiCore.Repositories\ApiCore.Repositories.csproj" />
     <ProjectReference Include="..\..\Common\ApiCore.Common\ApiCore.Common.csproj" />
   </ItemGroup>
 </Project>

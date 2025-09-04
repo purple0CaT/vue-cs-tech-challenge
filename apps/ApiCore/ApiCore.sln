@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiCore.Application.UnitTests", "UnitTests\ApiCore.Application.UnitTests\ApiCore.Application.UnitTests.csproj", "{4452CB7E-848E-4B27-80AC-9F4F9AE02017}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiCore.Repositories", "Infrastructure\ApiCore.Repositories\ApiCore.Repositories.csproj", "{A353E58F-E011-4B59-9E6E-3A18CE7B61D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{4452CB7E-848E-4B27-80AC-9F4F9AE02017}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4452CB7E-848E-4B27-80AC-9F4F9AE02017}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4452CB7E-848E-4B27-80AC-9F4F9AE02017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A353E58F-E011-4B59-9E6E-3A18CE7B61D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A353E58F-E011-4B59-9E6E-3A18CE7B61D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A353E58F-E011-4B59-9E6E-3A18CE7B61D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A353E58F-E011-4B59-9E6E-3A18CE7B61D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{322E840D-8815-4672-99C1-ABD8249FB5A1} = {0EC7615B-6C60-4BF4-A83B-F5ACB11C14F1}
@@ -94,5 +100,6 @@ Global
 		{088918B0-2603-4C04-86A5-946C41E5D602} = {D83D72D8-C239-4489-B73B-2AE2D76056D0}
 		{F3E71782-4245-40E8-9045-2DDAAF1D6D68} = {7117F2E0-8727-4393-8642-3A43A9852695}
 		{4452CB7E-848E-4B27-80AC-9F4F9AE02017} = {8D67C482-940D-4B90-814E-483F0E3EB1B8}
+		{A353E58F-E011-4B59-9E6E-3A18CE7B61D4} = {D83D72D8-C239-4489-B73B-2AE2D76056D0}
 	EndGlobalSection
 EndGlobal

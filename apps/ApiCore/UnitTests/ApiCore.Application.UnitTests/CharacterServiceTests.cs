@@ -1,24 +1,33 @@
 using ApiCore.Clients.Contracts;
+using ApiCore.Contracts;
 using ApiCore.Models;
-
 using Moq;
 
 namespace ApiCore.Application.UnitTests;
 
 public class CharacterServiceTests {
 	private readonly Mock<IStarWarsApiClient> _mockStarWarsApiClient;
+	private readonly Mock<IUserService> _mockUserService;
 	private readonly CharacterService _characterService;
 
 	public CharacterServiceTests() {
 		_mockStarWarsApiClient = new Mock<IStarWarsApiClient>();
-		_characterService = new CharacterService(_mockStarWarsApiClient.Object);
+		_mockUserService = new Mock<IUserService>();
+		_characterService = new CharacterService(_mockStarWarsApiClient.Object, _mockUserService.Object);
 	}
 
 	[Fact]
 	public void Constructor_NullStarWarsApiClient_ArgumentExceptionThrown() {
 		// arrange act assert
 		Assert.Throws<ArgumentException>(() =>
-			new CharacterService(null));
+			new CharacterService(null!, _mockUserService.Object));
+	}
+
+	[Fact]
+	public void Constructor_NullUserService_ArgumentExceptionThrown() {
+		// arrange act assert
+		Assert.Throws<ArgumentException>(() =>
+			new CharacterService(_mockStarWarsApiClient.Object, null!));
 	}
 
 	[Fact]
@@ -122,6 +131,7 @@ public class CharacterServiceTests {
 		// arrange
 		var characterId = 1;
 		var expectedCharacter = new Character {
+			Id = "1",
 			Name = "Luke Skywalker",
 			Height = "172",
 			Mass = "77",
@@ -161,11 +171,46 @@ public class CharacterServiceTests {
 		_mockStarWarsApiClient.Verify(x => x.GetCharacter(characterId), Times.Once);
 	}
 
+	[Fact]
+	public async Task GetCharacterList_WithUserId_MarksFavoritesAndSorts() {
+		// arrange
+		var page = 1;
+		var userId = "test-user-123";
+		var mockCharacters = CreateMockCharacters(5);
+		var user = new User {
+			Id = userId,
+			FavoriteCharacters = [mockCharacters[2].Id, mockCharacters[4].Id]
+		};
+
+		_mockStarWarsApiClient.Setup(x => x.GetCharacterList())
+			.ReturnsAsync(mockCharacters);
+		_mockUserService.Setup(x => x.GetUserAsync(userId))
+			.ReturnsAsync(user);
+
+		// act
+		var result = await _characterService.GetCharacterList(page, userId);
+
+		// assert
+		Assert.NotNull(result);
+		Assert.Equal(5, result.Items.Count());
+
+		var items = result.Items.ToList();
+		Assert.True(items[0].IsFavorite);
+		Assert.True(items[1].IsFavorite);
+		Assert.False(items[2].IsFavorite);
+		Assert.False(items[3].IsFavorite);
+		Assert.False(items[4].IsFavorite);
+
+		_mockStarWarsApiClient.Verify(x => x.GetCharacterList(), Times.Once);
+		_mockUserService.Verify(x => x.GetUserAsync(userId), Times.Once);
+	}
+
 
 	private static List<Character> CreateMockCharacters(int count) {
 		var characters = new List<Character>();
 		for (int i = 1; i <= count; i++) {
 			characters.Add(new Character {
+				Id = i.ToString(),
 				Name = $"Character {i}",
 				Height = $"{150 + i}",
 				Mass = $"{50 + i}",

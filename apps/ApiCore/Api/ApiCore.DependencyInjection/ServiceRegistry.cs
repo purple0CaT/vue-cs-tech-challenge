@@ -4,6 +4,7 @@ using ApiCore.Application;
 using ApiCore.Clients;
 using ApiCore.Clients.Contracts;
 using ApiCore.Contracts;
+using ApiCore.Repositories;
 
 namespace ApiCore.DependencyInjection;
 
@@ -15,6 +16,7 @@ internal class ServiceRegistry : Lamar.ServiceRegistry {
 			scanner.AssemblyContainingType<ApiCoreApplicationContractsHook>();
 			scanner.AssemblyContainingType<ApiCoreClientsHook>();
 			scanner.AssemblyContainingType<ApiCoreClientsContractsHook>();
+			scanner.AssemblyContainingType<ApiCoreRepositoriesHook>();
 			scanner.WithDefaultConventions();
 		});
 	}

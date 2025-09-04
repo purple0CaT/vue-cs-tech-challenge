@@ -4,6 +4,7 @@
     <ProjectReference Include="..\ApiCore.Models\ApiCore.Models.csproj" />
     <ProjectReference Include="..\ApiCore.Contracts\ApiCore.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ApiCore.Clients.Contracts\ApiCore.Clients.Contracts.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ApiCore.Repositories\ApiCore.Repositories.csproj" />
     <ProjectReference Include="..\..\Common\ApiCore.Common\ApiCore.Common.csproj" />
   </ItemGroup>
 
